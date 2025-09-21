@@ -1,44 +1,48 @@
-@echo off
-REM Verificar si Node.js está instalado
-where node >nul 2>nul
-if %errorlevel% neq 0 (
-    echo [Console @ Ruby-Bot] Node.js no esta instalado. Ejecutando instalador...
-    start /wait node-installer.msi
-) else (
-    echo [Console @ Ruby-Bot] Node.js ya esta instalado.
-)
-
-REM Verificar si Git está instalado
-where git >nul 2>nul
-if %errorlevel% neq 0 (
-    echo [Console @ Ruby-Bot] Git no esta instalado. Ejecutando instalador...
-    start /wait git-installer.exe
-) else (
-    echo [Console @ Ruby-Bot] Git ya esta instalado.
-)
-
-REM Verificar si ImageMagick está instalado
-where convert >nul 2>nul
-if %errorlevel% neq 0 (
-    echo [Console @ Ruby-Bot] ImageMagick no esta instalado. Ejecutando instalador...
-    start /wait imagemagick-installer.exe
-) else (
-    echo [Console @ Ruby-Bot] ImageMagick ya esta instalado.
-)
-
-REM Ejecutar Git pull
-echo [Console @ Ruby-Bot] Verificando Actualizaciones...
-git pull
-
-REM Ejecutar npm install (ignorar crasheo)
-echo [Console @ Ruby-Bot] Instalando Dependencias...
-npm install
-if %errorlevel% neq 0 (
-    echo [Console @ Ruby-Bot] Se detectó un problema después de npm install, pero se ignorará para continuar.
-)
-
-REM Ejecutar node index.js
-echo Ejecutando node index.js...
-node index.js
-
-pause
+{
+  "name": "REY-MD",
+  "version": "4.5.0",
+  "description": "A WhatsApp Bot Created By pkdriller",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start index.js --deep-monitoring --attach --name PK-XMD",
+    "stop": "pm2 stop PK-XMD",
+    "restart": "pm2 restart PK-XMD"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "github:Jeliostarr/DEV-Baileys#main",
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@dark-yasiya/yt-dl.js": "1.0.5",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@vitalets/google-translate-api": "^9.2.1",
+    "pino": "^9.7.0",
+    "pm2": "^6.0.8",
+    "util": "^0.12.5",
+    "express": "^5.1.0",
+    "moment-timezone": "^0.6.0",
+    "axios": "^1.9.0",
+    "file_size_url": "1.0.6",
+    "fs-extra": "^11.3.0",
+    "ffmpeg": "^0.0.4",
+    "file-type": "^21.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "form-data": "^4.0.3",
+    "google-tts-api": "^2.0.2",
+    "path": "^0.12.7",
+    "node-fetch": "^3.3.2",
+    "megajs": "^1.3.7",
+    "wa_set_pkg": "1.0.5",
+    "wa-sticker-formatter": "^4.4.4",
+    "jimp": "^0.16.1",
+    "adm-zip": "^0.5.16",
+    "cheerio": "^1.0.0-rc.12",
+    "qrcode-terminal": "^0.12.0",
+    "youtube-yts": "^2.0.0",
+    "youtubedl-core": "^4.11.7",
+    "yt-search": "^2.12.1",
+    "ytdl-core": "^4.11.5"
+    "ruhend-scraper": "^8.3.0",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7",
+    "acrcloud": "^1.4.0"
+  }
+}
