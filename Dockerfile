@@ -1,22 +1,20 @@
-# Usa Ubuntu como imagen base
-FROM ubuntu:22.04
+# Use official Node.js image
+FROM node:20-buster
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Instala Node.js 20 y herramientas necesarias
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y curl git imagemagick openssh-client ca-certificates && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt install -y nodejs && \
-    npm install -g npm && \
-    rm -rf /var/lib/apt/lists/*
-
-# Directorio de trabajo dentro del contenedor
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copia todos los archivos de tu proyecto
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install the application dependencies
+RUN npm install
+
+# Copy the rest of the application files into the container
 COPY . .
 
-# Instala dependencias (incluye cfonts) al iniciar
-CMD npm install cfonts && npm install && node index.js 
+# Expose the port your app will be running on
+EXPOSE 8000
+
+# Command to run the app
+CMD ["npm", "start"]
